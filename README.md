@@ -12,8 +12,8 @@ Ensure Docker is installed before running the monitoring environment.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/elzaba/advanced-database-topics.git
-cd advanced-database-topics
+git clone https://github.com/elzaba/advanced-database-project.git
+cd advanced-database-project
 ```
 
 ### 2. Build Docker images
