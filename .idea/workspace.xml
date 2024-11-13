@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8d95760f-e7b7-46a5-8ab5-a60c12ec9bbf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/advanced-database-project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/config/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/config/alert_config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/config/config_loader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/config/logging_config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/config/metrics.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/config/model_config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/alert_handler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/fetch_metrics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/preprocess_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/train_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/utils/prometheus_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jmx-exporter/kafka-broker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/jmx-exporter/kafka-broker.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2ogyyQYzuDCjkATNANRqRNEJPaG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.fetch_metrics.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.preprocess_data.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "alert-processor",
+    "last_opened_file_path": "D:/ADT/advanced-database-project/alert-processor/models"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ADT\advanced-database-project\alert-processor\models" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="fetch_metrics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="advanced-database-project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/alert-processor/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/alert-processor/scripts/fetch_metrics.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.fetch_metrics" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8d95760f-e7b7-46a5-8ab5-a60c12ec9bbf" name="Changes" comment="" />
+      <created>1731305772461</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731305772461</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/alert-processor/models/fetch_metrics.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

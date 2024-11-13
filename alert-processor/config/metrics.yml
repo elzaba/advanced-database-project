@@ -1,0 +1,220 @@
+settings:
+  prometheus_url: "http://localhost:9090"  # Set your Prometheus URL here
+
+metrics:
+  - name: kafka_jvm_non_heap_usage
+    query: avg(kafka_jvm_memory_pool_usage{type="NonHeapMemoryUsage", env="cluster-demo"})
+    description: "JVM Non-Heap Memory Usage"
+    time_range: '1h'
+    step: '5s'
+
+  - name: kafka_jvm_heap_usage
+    query: avg(kafka_jvm_memory_pool_usage{type="HeapMemoryUsage", env="cluster-demo"})
+    description: "JVM Heap Memory Usage"
+    time_range: '1h'
+    step: '5s'
+
+  - name: kafka_gc_collection_time
+    query: avg(kafka_jvm_gc_collection_time{env="cluster-demo"})
+    description: "Garbage Collection Time"
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_gc_collection_count
+    query: sum(kafka_jvm_gc_collection_count{env="cluster-demo"})
+    description: "Garbage Collection Count"
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_os_cpu_load
+    query: avg(kafka_jvm_os_processcpuload{env="cluster-demo"})
+    description: "Operating System CPU Load"
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_os_process_cpu_load
+    query: avg(kafka_jvm_os_systemcpuload{env="cluster-demo"})
+    description: "Process CPU Load"
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_open_file_descriptors
+    query: sum(kafka_jvm_os_openfiledescriptorcount{env="cluster-demo"})
+    description: "Open File Descriptors Count"
+    time_range: '1h'
+    step: '5s'
+
+  - name: kafka_free_physical_memory
+    query: avg(kafka_jvm_os_freephysicalmemorysize{env="cluster-demo"})
+    description: "Free Physical Memory Size"
+    time_range: '1h'
+    step: '5s'
+
+  - name: kafka_committed_virtual_memory
+    query: avg(kafka_jvm_os_committedvirtualmemorysize{env="cluster-demo"})
+    description: "Committed Virtual Memory Size"
+    time_range: '1h'
+    step: '5s'
+
+  - name: kafka_broker_state
+    query: kafka_server_brokerstate{env="cluster-demo"}
+    description: "Broker State"
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_socket_active_connections
+    query: sum(kafka_server_socket_server_metrics_connection_count{env="cluster-demo"})
+    description: "Socket Server Active Connections"
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_request_handler_idle_percent
+    query: avg(kafka_server_request_handler_avg_idle_percent{env="cluster-demo"})
+    description: "Request Handler Idle Percent"
+    time_range: '1h'
+    step: '1m'
+
+
+metricsz:
+  - name: kafka_active_controller
+    query: sum(kafka_controller_activecontrollercount)
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_offline_partitions_count
+    query: sum(kafka_controller_offlinepartitionscount)
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_under_replicated_partitions
+    query: sum(kafka_server_replica_manager_underreplicatedpartitions)
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_partitions_under_min_isr
+    query: sum(kafka_cluster_partition_underminisr)
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_preferred_replica_imbalance
+    query: sum(kafka_controller_preferredreplicaimbalancecount)
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_brokers_running
+    query: count((kafka_server_brokerstate == 3) or (kafka_server_brokerstate == 4))
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_produce_requests_per_sec
+    query: sum(kafka_network_request_per_sec{aggregate="OneMinuteRate", request="Produce"})
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_fetch_consumer_requests_per_sec
+    query: sum(kafka_network_request_per_sec{aggregate="OneMinuteRate", request="FetchConsumer"})
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_metadata_requests_per_sec
+    query: sum(kafka_network_request_per_sec{aggregate="OneMinuteRate", request="Metadata"})
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_offset_commit_requests_per_sec
+    query: sum(kafka_network_request_per_sec{aggregate="OneMinuteRate", request="OffsetCommit"})
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_messages_in_per_sec
+    query: sum(kafka_server_broker_topic_metrics_messagesinpersec_rate{topic!=""})
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_bytes_in_per_sec
+    query: sum(kafka_server_broker_topic_metrics_bytesinpersec_rate{topic=""})
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_bytes_out_per_sec
+    query: sum(kafka_server_broker_topic_metrics_bytesoutpersec_rate{topic=""})
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_in_sync_replica_expands_rate
+    query: kafka_server_replica_manager_isrexpandspersec{aggregate="OneMinute"}
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_in_sync_replica_shrinks_rate
+    query: kafka_server_replica_manager_isrshrinkspersec{aggregate="OneMinute"}
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_leader_election_rate
+    query: kafka_controller_stats_leaderelectionrateandtimems{aggregate="OneMinuteRate"}
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_unclean_leader_election_rate
+    query: kafka_controller_stats_uncleanleaderelectionspersec{aggregate="OneMinuteRate"}
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_leader_count_per_broker
+    query: kafka_server_replica_manager_leadercount
+    time_range: '1h'
+    step: '1m'
+
+  - name: kafka_partitions_per_broker
+    query: kafka_server_replica_manager_partitioncount
+    time_range: '1h'
+    step: '1m'
+
+  - name: jvm_memory_used_non_heap
+    query: avg(jvm_memory_used_bytes{area="nonheap", instance="jmx-kafka101:5556"})
+    description: "JVM Memory Used (Non-Heap)"
+    time_range: 1h
+    step: 5s
+
+  - name: jvm_memory_used_heap
+    query: avg(jvm_memory_used_bytes{area="heap", instance="jmx-kafka101:5556"})
+    description: "JVM Memory Used (Heap)"
+    time_range: 1h
+    step: 5s
+
+  - name: gc_process_time
+    query: avg(jvm_gc_collection_seconds_sum{instance="jmx-kafka101:5556"})
+    description: "GC Process Time"
+    time_range: 1h
+    step: 5s
+
+  - name: cpu_usage
+    query: avg(cpu_usage_percent{instance="jmx-kafka101:5556"})
+    description: "CPU Usage"
+    time_range: 1h
+    step: 5s
+
+  - name: process_cpu
+    query: avg(process_cpu_seconds_total{instance="jmx-kafka101:5556"})
+    description: "Process CPU"
+    time_range: 1h
+    step: 5s
+
+  - name: open_file_descriptors
+    query: avg(open_file_descriptors{instance="jmx-kafka101:5556"})
+    description: "Open File Descriptors"
+    time_range: 1h
+    step: 5s
+
+  - name: free_physical_memory
+    query: avg(free_physical_memory_bytes{instance="jmx-kafka101:5556"})
+    description: "Free Physical Memory"
+    time_range: 1h
+    step: 5s
+
+  - name: available_virtual_memory
+    query: avg(available_virtual_memory_bytes{instance="jmx-kafka101:5556"})
+    description: "Available Virtual Memory"
+    time_range: 1h
+    step: 5s

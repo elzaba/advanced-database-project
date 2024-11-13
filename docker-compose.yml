@@ -240,3 +240,11 @@ services:
       - "--path.sysfs=/host/sys"
       - "--collector.filesystem.ignored-mount-points"
       - "^(aufs|proc|nsfs|shm|cgroup|tmpfs|binfmt_misc|debugfs|devpts|fusectl|hugetlbfs|fuse.lxcfs|mqueue|pstore|securityfs|sysfs|autofs|devtmpfs|configfs)"
+
+  alert-processor:
+    build: ./alert-processor
+    environment:
+      - PROMETHEUS_URL=http://prometheus:9090  # Prometheus API endpoint
+      - ALERT_INTERVAL=300  # Check interval in seconds (e.g., 5 minutes)
+    depends_on:
+      - prometheus

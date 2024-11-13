@@ -1,0 +1,8 @@
+prometheus-api-client
+pandas
+numpy
+requests  # For Slack/notification API calls
+scikit-learn
+pyyaml
+joblib
+
