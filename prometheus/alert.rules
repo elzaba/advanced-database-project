@@ -1,0 +1,67 @@
+groups:
+- name: kafka_alerts
+  rules:
+  - alert: BytesInPerSec_Low
+    annotations:
+      description: Bytes in per second is above low threshold.
+      summary: Low Bytes In per Second on Kafka Broker
+    expr: kafka_server_brokertopicmetrics_bytesinpersec > 507066.133513173
+    for: 5m
+    labels:
+      severity: low
+  - alert: BytesInPerSec_Medium
+    annotations:
+      description: Bytes in per second is above medium threshold.
+      summary: Medium Bytes In per Second on Kafka Broker
+    expr: kafka_server_brokertopicmetrics_bytesinpersec > 785721.4358575147
+    for: 5m
+    labels:
+      severity: medium
+  - alert: BytesInPerSec_High
+    annotations:
+      description: Bytes in per second is above high threshold.
+      summary: High Bytes In per Second on Kafka Broker
+    expr: kafka_server_brokertopicmetrics_bytesinpersec > 1064376.7382018564
+    for: 5m
+    labels:
+      severity: high
+  - alert: BytesInPerSec_Critical
+    annotations:
+      description: Bytes in per second is above critical threshold.
+      summary: Critical Bytes In per Second on Kafka Broker
+    expr: kafka_server_brokertopicmetrics_bytesinpersec > 1343032.0405461981
+    for: 5m
+    labels:
+      severity: critical
+  - alert: BytesOutPerSec_Low
+    annotations:
+      description: Bytes out per second is above low threshold.
+      summary: Low Bytes Out per Second on Kafka Broker
+    expr: kafka_server_brokertopicmetrics_bytesoutpersec > 457351.18000000005
+    for: 5m
+    labels:
+      severity: low
+  - alert: BytesOutPerSec_Medium
+    annotations:
+      description: Bytes out per second is above medium threshold.
+      summary: Medium Bytes Out per Second on Kafka Broker
+    expr: kafka_server_brokertopicmetrics_bytesoutpersec > 508312.52876236
+    for: 5m
+    labels:
+      severity: medium
+  - alert: BytesOutPerSec_High
+    annotations:
+      description: Bytes out per second is above high threshold.
+      summary: High Bytes Out per Second on Kafka Broker
+    expr: kafka_server_brokertopicmetrics_bytesoutpersec > 696097.5947308416
+    for: 5m
+    labels:
+      severity: high
+  - alert: BytesOutPerSec_Critical
+    annotations:
+      description: Bytes out per second is above critical threshold.
+      summary: Critical Bytes Out per Second on Kafka Broker
+    expr: kafka_server_brokertopicmetrics_bytesoutpersec > 883882.6606993232
+    for: 5m
+    labels:
+      severity: critical

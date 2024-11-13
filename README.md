@@ -71,13 +71,27 @@ Metrics will be accessible through Prometheus. To view metrics collected from Ka
 
   Node Exporter collects system-level metrics (CPU, memory, disk usage) from the Kafka environment.
 
+## Steps to Run the Dynamic Alert Processor
+
+1. Install Required Python Dependencies
+
+   The requirements.txt file contains the necessary dependencies for the Dynamic Alert Processor. Install them by running:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Run the Dynamic Alert Processor
+
+   Once the virtual environment is set up and dependencies are installed, you can run the alert processor by executing the following command:
+   ```bash
+   python dynamic_alert_processor.py
+   ```
+
 ## Stopping the Environment
 
 To stop all services, run:
 ```bash
 docker compose down
 ```
-
 
 ## Utilizing Kafka Connect
 

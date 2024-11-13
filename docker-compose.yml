@@ -212,7 +212,17 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus/:/etc/prometheus/
-
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'  # Set the path to the configuration file
+      - '--web.enable-lifecycle'
+  
+  alertmanager:
+    image: prom/alertmanager:v0.18.0
+    ports:
+      - 9093:9093    
+    volumes:
+    - ./alertmanager/:/etc/alertmanager/
+      
   node-exporter:
     image: prom/node-exporter
     volumes:

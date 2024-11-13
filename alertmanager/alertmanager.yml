@@ -1,0 +1,65 @@
+global:
+  resolve_timeout: 5m  # The time to wait before resolving an alert (used for silencing).
+
+route:
+  group_by: ['alertname', 'severity']  # Group alerts by these labels.
+  group_wait: 10s  # Initial wait time before sending notifications.
+  group_interval: 5m  # Minimum interval between sending notifications for the same alert group.
+  repeat_interval: 3h  # Minimum interval between repeating notifications for an alert.
+  receiver: 'slack'  # Default receiver for notifications.
+
+  routes:
+    - match:
+        severity: 'critical'  # Alerts with the 'critical' severity will trigger this route.
+      receiver: 'slack'  # Slack notification will be used for critical alerts.     
+    #- match:
+    #    severity: 'critical'  # Alerts with 'critical' severity will also trigger this route for email.
+    #  receiver: 'email'  # Email notifications will also be sent for critical alerts.
+    - match:
+        severity: 'low'  # Do nothing for low severity alerts (no receiver defined).
+      receiver: 'null'  # This is a dummy receiver to prevent Slack notification for low severity.
+    - match:
+        severity: 'medium'  # Do nothing for medium severity alerts.
+      receiver: 'null'  # This is a dummy receiver to prevent Slack notification for medium severity.
+    - match:
+        severity: 'high'  # Do nothing for high severity alerts.
+      receiver: 'null'  # This is a dummy receiver to prevent Slack notification for high severity.  
+      
+receivers:
+  - name: 'slack'
+    slack_configs:
+      - api_url: 'https://hooks.slack.com/services/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' # Slack webhook URL.
+        channel: '#alerts'  # The Slack channel to send alerts to.
+        send_resolved: true  # Send a message when the alert is resolved.
+        text: |
+          *Alert Name*: {{ .CommonLabels.alertname }}
+          *Severity*: {{ .CommonLabels.severity }}
+          *Description*: {{ if .CommonAnnotations.description }}{{ .CommonAnnotations.description }}{{ else }}No description available{{ end }}
+          *Summary*: {{ if .CommonAnnotations.summary }}{{ .CommonAnnotations.summary }}{{ else }}No summary available{{ end }}
+          *Labels*: {{ range .CommonLabels.SortedPairs }}{{ .Name }}: {{ .Value }} {{ end }}
+
+  - name: 'null'  # The built-in "null" receiver that discards alerts.
+    
+  #- name: 'email'
+  #  email_configs:
+  #    - to: 'your_email@example.com'  # Replace with the recipient's email address.
+  #      from: 'alertmanager@example.com'  # The sender's email address.
+  #      smarthost: 'smtp.gmail.com:587'  # SMTP server address (adjust with your SMTP server).
+  #      auth_username: '{{ .Env.SMTP_USERNAME }}'
+  #      auth_password: '{{ .Env.SMTP_PASSWORD }}'
+  #      send_resolved: true  # Send a notification when the alert is resolved.
+  #      subject: '{{ .CommonLabels.alertname }} - {{ .CommonLabels.severity }}'
+  #      text: |
+  #        Alert: {{ .CommonLabels.alertname }} (Severity: {{ .CommonLabels.severity }})
+  #        Description: {{ .Annotations.description }}
+  #        Summary: {{ .Annotations.summary }}
+
+# Optional: Silence rules for certain conditions (optional).
+# silence_configs:
+#   - match:
+#       severity: 'critical'
+#     start: '2024-11-12T00:00:00Z'
+#     end: '2024-11-13T00:00:00Z'
+#     created_by: 'your_name'
+#     comment: 'Scheduled maintenance'
+
