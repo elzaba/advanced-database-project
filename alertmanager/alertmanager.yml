@@ -1,0 +1,38 @@
+global:
+  resolve_timeout: 5m  # The time to wait before resolving an alert (used for silencing).
+
+route:
+  group_by: ['alertname', 'severity', 'source']  # Group alerts by these labels.
+  group_wait: 10s  # Initial wait time before sending notifications.
+  group_interval: 5m  # Minimum interval between sending notifications for the same alert group.
+  repeat_interval: 3h  # Minimum interval between repeating notifications for an alert.
+  receiver: dummy  # Default receiver for notifications.
+
+  routes:
+    # Route alerts forwarded by alert processor application to Slack.
+    - match:
+        severity: 'critical'  # Alerts with 'critical' severity
+        source: 'alertProcessor'  # Source must be 'alertProcessor'
+      receiver: slack  # Send to the real channels
+    
+    # Route Prometheus alerts to the dummy receiver
+    - match:
+        severity: 'critical'  # Alerts with 'critical' severity
+        source: 'prometheus'  # Source must be 'prometheus'
+      receiver: 'dummy'  # Dummy receiver for Prometheus-originating alerts.
+      
+receivers:
+  - name: 'slack'
+    #slack_configs:
+    #  - api_url: 'https://hooks.slack.com/services/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'  # Slack webhook URL
+    #    channel: '#alerts'  # Slack channel for default alerts.
+    #    send_resolved: true  # Send a message when the alert is resolved.
+    #    text: |
+    #      *Alert Name*: {{ .CommonLabels.alertname }}
+    #      *Severity*: {{ .CommonLabels.severity }}
+    #      *Description*: {{ if .CommonAnnotations.description }}{{ .CommonAnnotations.description }}{{ else }}No description available{{ end }}
+    #      *Summary*: {{ if .CommonAnnotations.summary }}{{ .CommonAnnotations.summary }}{{ else }}No summary available{{ end }}
+    #      *Labels*: {{ range .CommonLabels.SortedPairs }}{{ .Name }}: {{ .Value }} {{ end }}
+
+  - name: 'dummy'
+    # Dummy receiver for Prometheus alerts.

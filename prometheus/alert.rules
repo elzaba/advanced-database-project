@@ -1,0 +1,120 @@
+groups:
+  - name: kafka-alerts
+    rules:
+
+    # Alert Rule for Kafka Broker Bytes In per Second
+    - alert: Kafka_Broker_BytesIn_PerSec_Warning
+      annotations:
+        description: Ingestion rate of bytes per second is high and should be monitored.
+        summary: Kafka Broker Bytes In Per Sec is high.
+      expr: rate(kafka_server_brokertopicmetrics_bytesinpersec[5m]) > 1500000
+      for: 5m
+      labels:
+        severity: warning
+        source: "prometheus"
+
+    - alert: Kafka_Broker_BytesIn_PerSec_Critical
+      annotations:
+        description: Ingestion rate of bytes per second has exceeded a critical threshold.
+        summary: Kafka Broker Bytes In Per Sec is critically high.
+      expr: rate(kafka_server_brokertopicmetrics_bytesinpersec[5m]) > 3000000
+      for: 5m
+      labels:
+        severity: critical
+        source: "prometheus"
+
+    # Alert Rule for Kafka Broker Bytes Out per Second
+    - alert: Kafka_Broker_BytesOut_PerSec_Warning
+      annotations:
+        description: Outgoing rate of bytes per second is high and requires attention.
+        summary: Kafka Broker Bytes Out Per Sec is high.
+      expr: rate(kafka_server_brokertopicmetrics_bytesoutpersec[5m]) > 1200000
+      for: 5m
+      labels:
+        severity: warning
+        source: "prometheus"
+
+    - alert: Kafka_Broker_BytesOut_PerSec_Critical
+      annotations:
+        description: Outgoing rate of bytes per second has exceeded a critical threshold.
+        summary: Kafka Broker Bytes Out Per Sec is critically high.
+      expr: rate(kafka_server_brokertopicmetrics_bytesoutpersec[5m]) > 2500000
+      for: 5m
+      labels:
+        severity: critical
+        source: "prometheus"
+
+    # Alert Rule for Kafka Broker Messages In per Second
+    - alert: Kafka_Broker_MessagesIn_PerSec_Warning
+      annotations:
+        description: Message ingestion rate is high and needs monitoring.
+        summary: Kafka Broker Messages In Per Sec is high.
+      expr: rate(kafka_server_brokertopicmetrics_messagesinpersec[5m]) > 30000
+      for: 5m
+      labels:
+        severity: warning
+        source: "prometheus"
+
+    - alert: Kafka_Broker_MessagesIn_PerSec_Critical
+      annotations:
+        description: Incoming message rate has reached a critical threshold.
+        summary: Kafka Broker Messages In Per Sec is critically high.
+      expr: rate(kafka_server_brokertopicmetrics_messagesinpersec[5m]) > 60000
+      for: 5m
+      labels:
+        severity: critical
+        source: "prometheus"
+
+    # Alert Rule for Kafka Under-replicated Partitions
+    - alert: Kafka_Broker_UnderReplicatedPartitions_Critical
+      annotations:
+        description: Number of under-replicated partitions exceeds the critical threshold, impacting availability.
+        summary: Kafka Broker has under-replicated partitions.
+      expr: kafka_server_replicamanager_underreplicatedpartitions > 0
+      for: 2m
+      labels:
+        severity: critical
+        source: "prometheus"
+
+    # Alert Rule for Kafka Offline Partitions Count
+    - alert: Kafka_Broker_OfflinePartitions_Critical
+      annotations:
+        description: Number of offline partitions has increased, indicating potential data unavailability.
+        summary: Kafka Broker has offline partitions.
+      expr: kafka_controller_kafkacontroller_offlinepartitionscount > 0
+      for: 2m
+      labels:
+        severity: critical
+        source: "prometheus"
+
+    # Alert Rule for Unclean Leader Elections per Second
+    - alert: Kafka_UncleanLeaderElections_PerSec_Critical
+      annotations:
+        description: Unclean leader elections detected, which can lead to data loss.
+        summary: Kafka Unclean Leader Elections Per Sec is high.
+      expr: rate(kafka_controller_controllerstats_uncleanleaderelectionspersec[5m]) > 1
+      for: 2m
+      labels:
+        severity: critical
+        source: "prometheus"
+
+    # Alert Rule for Kafka Network Request Queue Time in ms
+    - alert: Kafka_Network_RequestQueueTime_ms_Warning
+      annotations:
+        description: Request queue time is high, indicating potential performance issues.
+        summary: Kafka Network Request Queue Time is high.
+      expr: avg_over_time(kafka_network_requestmetrics_requestqueuetimems[5m]) > 40000
+      for: 2m
+      labels:
+        severity: warning
+        source: "prometheus"
+
+    - alert: Kafka_Network_RequestQueueTime_ms_Critical
+      annotations:
+        description: Request queue time has exceeded the critical threshold, suggesting broker overload.
+        summary: Kafka Network Request Queue Time is critically high.
+      expr: avg_over_time(kafka_network_requestmetrics_requestqueuetimems[5m]) > 40000
+      for: 2m
+      labels:
+        severity: critical
+        source: "prometheus"
