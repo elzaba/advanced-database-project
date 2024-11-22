@@ -1,0 +1,336 @@
+[
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "__transaction_state"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.0960243560968022e+03",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "__transaction_state"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:53.866163331Z",
+    "value": "3.7427498388853087e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "sample-streams-KSTREAM-AGGREGATE-STATE-STORE-0000000002-repartition"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:02:23.866163331Z",
+    "value": "1.604924553878975e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "__consumer_offsets"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:53.866163331Z",
+    "value": "5.372119380430676e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "__transaction_state"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:53.866163331Z",
+    "value": "4.455654570101558e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "count-even-odd-entries"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:02:23.866163331Z",
+    "value": "1.5751461143580968e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.1327585057445722e+03",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:53.866163331Z",
+    "value": "5.781906264583657e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "sample-streams-KSTREAM-AGGREGATE-STATE-STORE-0000000002-changelog"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:02:08.866163331Z",
+    "value": "1.5751461143580968e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:53.866163331Z",
+    "value": "1.3007844618769307e+03",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second has exceeded a critical threshold.",
+      "summary": "Kafka Broker Bytes In Per Sec is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:53.866163331Z",
+    "value": "1.3007844618769307e+03",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "prometheus",
+      "topic": "__consumer_offsets"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second has exceeded a critical threshold.",
+      "summary": "Kafka Broker Bytes In Per Sec is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:02:08.866163331Z",
+    "value": "5.372119380430676e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second has exceeded a critical threshold.",
+      "summary": "Kafka Broker Bytes In Per Sec is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:53.866163331Z",
+    "value": "5.781906264583657e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second has exceeded a critical threshold.",
+      "summary": "Kafka Broker Bytes In Per Sec is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.1327585057445722e+03",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "prometheus",
+      "topic": "__transaction_state"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second has exceeded a critical threshold.",
+      "summary": "Kafka Broker Bytes In Per Sec is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.0960243560968022e+03",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "prometheus",
+      "topic": "__transaction_state"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second has exceeded a critical threshold.",
+      "summary": "Kafka Broker Bytes In Per Sec is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T09:35:23.866163331Z",
+    "value": "4.455654570101558e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "prometheus",
+      "topic": "__transaction_state"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second has exceeded a critical threshold.",
+      "summary": "Kafka Broker Bytes In Per Sec is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T09:46:53.866163331Z",
+    "value": "3.7427498388853087e+02",
+    "validity": "invalid",
+    "source": "alertProcess"
+  }
+]

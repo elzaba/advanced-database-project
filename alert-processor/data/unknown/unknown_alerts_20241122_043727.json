@@ -1,0 +1,1407 @@
+[
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesOut_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Outgoing rate of bytes per second is high and requires attention.",
+      "summary": "Kafka Broker Bytes Out Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:02:08.866163331Z",
+    "value": "1.6049602204542424e+02",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesOut_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "sample-streams-KSTREAM-AGGREGATE-STATE-STORE-0000000002-repartition"
+    },
+    "annotations": {
+      "description": "Outgoing rate of bytes per second is high and requires attention.",
+      "summary": "Kafka Broker Bytes Out Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:02:08.866163331Z",
+    "value": "1.6049602204542424e+02",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "Fetch",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "7.383e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "TxnOffsetCommit",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "5.77e+02",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "Metadata",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.587275e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "AddOffsetsToTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.833675e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "6.272475e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "FetchConsumer",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "2.94301e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "FetchConsumer",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.67761e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "Produce",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "5.548875e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "Produce",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "1.82575e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "EndTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.824525e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "Heartbeat",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.23385e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "AddOffsetsToTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.82455e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "WriteTxnMarkers",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.2858e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "Metadata",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "2.77865e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.824125e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "OffsetCommit",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.4595e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxnVerification",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "1.101395e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "Heartbeat",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "4.861e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "Fetch",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.73336e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "AddOffsetsToTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "3.68555e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "DeleteRecords",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "5.71e+02",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "EndTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.833675e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "FetchFollower",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "4.055785e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "WriteTxnMarkers",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.69955e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "FetchFollower",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "6.820645e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "Fetch",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "9.145785e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "Metadata",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "1.299175e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxnVerification",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.6485e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.833975e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxnVerification",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.66715e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "FetchConsumer",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "2.3251875e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "Produce",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.2853e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "DeleteRecords",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.284e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "EndTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "3.68555e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "TxnOffsetCommit",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.2858e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "FetchFollower",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "4.440045e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "Heartbeat",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "4.861e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "FetchFollower",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "6.820645e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "FetchConsumer",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "2.94301e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "Fetch",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.73336e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "AddOffsetsToTxn",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.82455e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "Fetch",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "9.145785e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxnVerification",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.6485e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "DeleteRecords",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.284e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "Heartbeat",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.23385e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "Metadata",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.587275e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "EndTxn",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "3.68555e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "WriteTxnMarkers",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.69955e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "WriteTxnMarkers",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.2858e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "EndTxn",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.824525e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxn",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.824125e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "AddOffsetsToTxn",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "3.68555e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "OffsetCommit",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.4595e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "Produce",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.2853e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "FetchFollower",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "4.440045e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxnVerification",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.66715e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "FetchConsumer",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "3.67761e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "AddOffsetsToTxn",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.833675e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "Metadata",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "2.77865e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "TxnOffsetCommit",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "5.77e+02",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxn",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.833975e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "FetchFollower",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "4.055785e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "EndTxn",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.833675e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "Produce",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "1.82575e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "Metadata",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "1.299175e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "DeleteRecords",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "5.71e+02",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "Fetch",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "7.383e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "FetchConsumer",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "2.3251875e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-3:1234",
+      "job": "kafka",
+      "request": "Produce",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "5.548875e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxn",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "6.272475e+04",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "request": "AddPartitionsToTxnVerification",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T04:34:23.866163331Z",
+    "value": "1.101395e+05",
+    "validity": "unknown"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "TxnOffsetCommit",
+      "severity": "critical",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time has exceeded the critical threshold, suggesting broker overload.",
+      "summary": "Kafka Network Request Queue Time is critically high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "7.2858e+04",
+    "validity": "unknown"
+  }
+]

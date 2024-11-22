@@ -1,0 +1,21 @@
+[
+  {
+    "labels": {
+      "alertname": "Kafka_Network_RequestQueueTime_ms_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "request": "EndTxn",
+      "severity": "warning",
+      "source": "prometheus"
+    },
+    "annotations": {
+      "description": "Request queue time is high, indicating potential performance issues.",
+      "summary": "Kafka Network Request Queue Time is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-22T05:01:38.866163331Z",
+    "value": "1.850725e+04",
+    "validity": "unknown"
+  }
+]
