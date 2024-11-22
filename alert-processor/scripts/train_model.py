@@ -1,7 +1,10 @@
 import os
 import pandas as pd
-from sklearn.ensemble import IsolationForest
 import pickle
+from sklearn.ensemble import IsolationForest, RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import OneClassSVM
+from sklearn.model_selection import train_test_split
 import logging
 
 
@@ -23,7 +26,7 @@ def load_preprocessed_data(data_folder="../data/processed"):
     base_dir = os.path.abspath(os.path.dirname(__file__))
     data_folder = os.path.join(base_dir, data_folder)
 
-    combined_data = pd.DataFrame()
+    data = {}
     try:
         for metric_name in os.listdir(data_folder):
             metric_dir = os.path.join(data_folder, metric_name)
@@ -31,89 +34,113 @@ def load_preprocessed_data(data_folder="../data/processed"):
 
             if os.path.exists(file_path):
                 df = pd.read_csv(file_path, index_col=0, parse_dates=True)
-                df["metric"] = metric_name  # Add a column to differentiate metrics
-                combined_data = pd.concat([combined_data, df], ignore_index=True)
+                data[metric_name] = df
                 logger.info(f"Loaded data from {file_path}")
     except Exception as e:
         logger.error(f"Error loading preprocessed data: {e}")
 
-    return combined_data
-
-
-# Train an Isolation Forest model
-def train_model(data):
-    """
-    Train an Isolation Forest model to detect anomalies.
-    """
-    # Select features for training
-    features = ["value", "hour", "day_of_week", "month", "rolling_mean", "rolling_std", "lag_1", "lag_2"]
-
-    data = data.dropna(subset=features)  # Drop rows with missing values
-
-    X = data[features]
-
-    # Train Isolation Forest model
-    model = IsolationForest(random_state=42, contamination=0.05)
-    model.fit(X)
-
-    # Predict anomalies
-    data.loc[:, 'predicted_anomaly'] = model.predict(X)
-    data.loc[:, 'predicted_anomaly'] = data['predicted_anomaly'].map({1: 0, -1: 1})  # Map to binary
-
-    logger.info(f"Isolation Forest trained successfully with {len(X)} samples.")
-
-    return model, data
-
-
-# Save the model
-def save_model(model, model_path="../models/isolation_forest.pkl"):
-    """
-    Save the trained model to a file.
-    """
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-    model_path = os.path.join(base_dir, model_path)
-
-    try:
-        os.makedirs(os.path.dirname(model_path), exist_ok=True)
-        with open(model_path, "wb") as file:
-            pickle.dump(model, file)
-        logger.info(f"Model saved to {model_path}")
-    except Exception as e:
-        logger.error(f"Error saving model: {e}")
-
-
-# Load the model
-def load_model(model_path="../models/isolation_forest.pkl"):
-    """
-    Load a trained model from a file.
-    """
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-    model_path = os.path.join(base_dir, model_path)
-
-    try:
-        with open(model_path, "rb") as file:
-            model = pickle.load(file)
-        logger.info(f"Model loaded from {model_path}")
-        return model
-    except Exception as e:
-        logger.error(f"Error loading model: {e}")
-        return None
-
-
-# Predict anomalies using the model
-def predict_anomalies(model, data):
-    """
-    Predict anomalies using the trained model.
-    """
-    features = ["value", "hour", "day_of_week", "month", "rolling_mean", "rolling_std", "lag_1", "lag_2"]
-    data = data.dropna(subset=features)  # Drop rows with missing values
-
-    X = data[features]
-    predictions = model.predict(X)
-    data["predicted_anomaly"] = predictions
-    data["predicted_anomaly"] = data["predicted_anomaly"].map({1: 0, -1: 1})  # Map to binary (1 for anomaly, 0 for normal)
-
     return data
+
+
+# Split data into training and testing sets
+def split_data(data, test_size=0.2, random_state=42):
+    """
+    Split data into training and testing sets and save them as separate files.
+    """
+    train_test_data = {}
+    for metric_name, df in data.items():
+        try:
+            # Drop rows with missing values in the required features
+            features = ["value", "rolling_mean", "rolling_std", "z_score", "static_alert"]
+            df = df.dropna(subset=features)
+
+            # Split data
+            train_df, test_df = train_test_split(df, test_size=test_size, random_state=random_state)
+            train_test_data[metric_name] = {"train": train_df, "test": test_df}
+
+            # Save split data
+            base_dir = os.path.abspath(os.path.dirname(__file__))
+            metric_dir = os.path.join(base_dir, "../data/processed", metric_name)
+            os.makedirs(metric_dir, exist_ok=True)
+            train_df.to_csv(os.path.join(metric_dir, "train.csv"))
+            test_df.to_csv(os.path.join(metric_dir, "test.csv"))
+
+            logger.info(f"Data split and saved for metric '{metric_name}': {len(train_df)} train rows, {len(test_df)} test rows")
+        except Exception as e:
+            logger.error(f"Error splitting data for metric '{metric_name}': {e}")
+
+    return train_test_data
+
+
+# Train models
+def train_models(data):
+    """
+    Train multiple models to detect anomalies.
+    """
+    features = ["value", "rolling_mean", "rolling_std", "z_score", "static_alert"]
+    models = {}
+    for metric_name, datasets in data.items():
+        try:
+            train_df = datasets["train"]
+            X_train = train_df[features]
+            y_train = train_df["final_anomaly"]
+
+            model_store = {}
+
+            # Isolation Forest
+            isolation_forest = IsolationForest(random_state=42, contamination=0.05)
+            isolation_forest.fit(X_train)
+            model_store["IsolationForest"] = isolation_forest
+
+            # Random Forest Classifier
+            random_forest = RandomForestClassifier(random_state=42)
+            random_forest.fit(X_train, y_train)
+            model_store["RandomForest"] = random_forest
+
+            # Logistic Regression
+            logistic_regression = LogisticRegression(random_state=42, max_iter=500)
+            logistic_regression.fit(X_train, y_train)
+            model_store["LogisticRegression"] = logistic_regression
+
+            # One-Class SVM
+            one_class_svm = OneClassSVM(kernel="rbf", gamma="auto", nu=0.05)
+            one_class_svm.fit(X_train)
+            model_store["OneClassSVM"] = one_class_svm
+
+            # Save models and feature metadata
+            models[metric_name] = {"models": model_store, "features": features}
+            logger.info(f"Models trained successfully for metric '{metric_name}' with {len(X_train)} samples.")
+        except Exception as e:
+            logger.error(f"Error training models for metric '{metric_name}': {e}")
+
+    return models
+
+
+# Save the models and feature metadata
+def save_models_and_metadata(models, model_folder="../models"):
+    """
+    Save the trained models and feature metadata to files in the respective metric folder.
+    """
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    for metric_name, data in models.items():
+        metric_dir = os.path.join(base_dir, model_folder, metric_name)
+        os.makedirs(metric_dir, exist_ok=True)
+
+        try:
+            # Save models
+            for model_name, model in data["models"].items():
+                model_path = os.path.join(metric_dir, f"{model_name}.pkl")
+                with open(model_path, "wb") as file:
+                    pickle.dump(model, file)
+                logger.info(f"{model_name} model saved to {model_path}")
+
+            # Save feature metadata
+            features_path = os.path.join(metric_dir, "features.pkl")
+            with open(features_path, "wb") as file:
+                pickle.dump(data["features"], file)
+            logger.info(f"Feature metadata saved to {features_path}")
+        except Exception as e:
+            logger.error(f"Error saving models or metadata for metric '{metric_name}': {e}")
 
 
 # Main function
@@ -121,21 +148,18 @@ def main():
     # Load preprocessed data
     data = load_preprocessed_data()
 
-    if data.empty:
+    if not data:
         logger.error("No preprocessed data found. Exiting.")
         return
 
-    # Train model
-    model, predictions = train_model(data)
+    # Split data into train and test sets
+    split_data_dict = split_data(data)
 
-    # Save the model
-    save_model(model)
+    # Train models
+    models = train_models(split_data_dict)
 
-    # Predict anomalies (for demonstration, use the same data)
-    model = load_model()
-    if model:
-        predictions = predict_anomalies(model, data)
-        logger.info(f"Predictions:\n{predictions[['value', 'anomaly', 'predicted_anomaly']].head()}")
+    # Save models and metadata
+    save_models_and_metadata(models)
 
 
 if __name__ == "__main__":

@@ -5,44 +5,87 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d95760f-e7b7-46a5-8ab5-a60c12ec9bbf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/advanced-database-project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/config/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/config/alert_config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/config/config_loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/config/logging_config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/config/metrics.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/config/model_config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/snakemake-settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/advanced_statistical_models.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/alert-processor/scripts/alert_handler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/fetch_metrics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/preprocess_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/train_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alert-processor/utils/prometheus_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmx-exporter/kafka-broker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/jmx-exporter/kafka-broker.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/check/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/check/check_prometheus_alert_response.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/evaluate_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert-processor/scripts/statistical_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/config/metrics.yml" beforeDir="false" afterPath="$PROJECT_DIR$/alert-processor/config/metrics.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/processed/preprocessed_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_broker_state/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_committed_virtual_memory/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_free_physical_memory/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_gc_collection_count/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_gc_collection_time/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_jvm_heap_usage/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_jvm_non_heap_usage/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_open_file_descriptors/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_os_cpu_load/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_os_process_cpu_load/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_request_handler_idle_percent/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/data/raw/kafka_socket_active_connections/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/scripts/alert_validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/alert-processor/scripts/alert_validator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/scripts/fetch_metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/alert-processor/scripts/fetch_metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/scripts/preprocess_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/alert-processor/scripts/preprocess_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alert-processor/scripts/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/alert-processor/scripts/train_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_active_controller/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_brokers_running/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_bytes_in_per_sec/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_bytes_out_per_sec/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_consumer_app/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_fetch_consumer_requests_per_sec/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_in_sync_replica_expands_rate/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_in_sync_replica_shrinks_rate/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_leader_count_per_broker/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_leader_election_rate/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_local_time_ms/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_messages_in_per_sec/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_metadata_requests_per_sec/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_network_socket_avg_idle_percentage/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_offline_partitions_count/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_offset_commit_requests_per_sec/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_partitions_per_broker/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_partitions_under_min_isr/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_preferred_replica_imbalance/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_produce_requests_per_sec/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_remote_time_ms/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_request_handler_avg_idle_percentage/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_request_queue_time_ms/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_request_total_time_ms/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_requests_per_second/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_response_queue_time_ms/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_response_send_time_ms/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_server_brokertopicmetrics_messagesinpersec/2024-11-10.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_server_socket_server_metrics_connection_count/2024-11-10.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_server_socket_server_metrics_connection_count/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_throttle_time_ms/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_unclean_leader_election_rate/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kafka_under_replicated_partitions/2024-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/node_sockstat_FRAG_inuse/2024-11-10.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/node_sockstat_FRAG_inuse/2024-11-11.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2ogyyQYzuDCjkATNANRqRNEJPaG" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -50,10 +93,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.advanced_statistical_models.executor": "Run",
+    "Python.alert_validator.executor": "Run",
+    "Python.check_prometheus_alert_response.executor": "Run",
+    "Python.evaluate_model.executor": "Run",
     "Python.fetch_metrics.executor": "Run",
     "Python.main.executor": "Run",
     "Python.preprocess_data.executor": "Run",
+    "Python.statistical_models.executor": "Run",
+    "Python.train_model.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "alert-processor",
     "last_opened_file_path": "D:/ADT/advanced-database-project/alert-processor/models"
   }
@@ -64,6 +114,50 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="alert_validator" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="advanced-database-project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/alert-processor/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/alert-processor/scripts/alert_validator.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="check_prometheus_alert_response" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="advanced-database-project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/alert-processor/scripts/check" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/alert-processor/scripts/check/check_prometheus_alert_response.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="fetch_metrics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="advanced-database-project" />
       <option name="ENV_FILES" value="" />
@@ -88,6 +182,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.alert_validator" />
+        <item itemvalue="Python.check_prometheus_alert_response" />
         <item itemvalue="Python.fetch_metrics" />
       </list>
     </recent_temporary>
@@ -109,15 +205,5 @@
       <updated>1731305772461</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/alert-processor/models/fetch_metrics.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
