@@ -1,0 +1,15 @@
+metrics:
+- alert_names:
+  - Kafka_Broker_BytesIn_PerSec_Warning
+  - Kafka_Broker_BytesIn_PerSec_Critical
+  best_model:
+    name: IsolationForest
+  description: Rate of bytes ingested by the Kafka broker per second.
+  name: kafka_broker_bytes_in_per_sec
+  query: rate(kafka_server_brokertopicmetrics_bytesinpersec{topic="sample"}[5m])
+  step: 15s
+  thresholds:
+    critical: 100
+    warning: 40
+  time_range: 12h
+prometheus_url: http://localhost:9090

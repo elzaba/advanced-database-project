@@ -56,7 +56,10 @@ public class SimpleProducer {
 
             long id = 0;
             while (true) {
+                // Generate variable-sized payload
+                //String message = generatePayload(id);
                 ProducerRecord<Long, String> record = new ProducerRecord<>(topicName, id, "Value " + id);
+                //ProducerRecord<Long, String> record = new ProducerRecord<>(topicName, id, message);
                 LocalDateTime now = LocalDateTime.now();
                 logger.info("Sending Key = {}, Value = {}", record.key(), record.value());
                 producer.send(record,(recordMetadata, exception) -> sendCallback(record, recordMetadata,exception));
@@ -65,6 +68,20 @@ public class SimpleProducer {
             }
         }
     }
+
+    /*private String generatePayload(long id) {
+        // Normal message
+        String baseMessage = "Value " + id;
+
+        // Append large data at intervals to create variability
+        if (id % 100 == 0) {  // For every 100th message, create a large payload
+            baseMessage += " " + "X".repeat(100000);  // Add 10 KB of data
+        } else if (id % 50 == 0) {  // For every 50th message, create medium payload
+            baseMessage += " " + "X".repeat(5000);   // Add 5 KB of data
+        }
+
+        return baseMessage;
+    }*/
 
     private void sendCallback(ProducerRecord<Long, String> record, RecordMetadata recordMetadata, Exception e) {
         if (e == null) {
