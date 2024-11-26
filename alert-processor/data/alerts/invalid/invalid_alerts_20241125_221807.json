@@ -1,0 +1,38 @@
+[
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "sample"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-26T03:10:23.866163331Z",
+    "value": "4.2211111111111116e+01"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "severity": "warning",
+      "source": "prometheus",
+      "topic": "sample"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "firing",
+    "activeAt": "2024-11-26T03:06:08.866163331Z",
+    "value": "4.365278474661314e+01"
+  }
+]

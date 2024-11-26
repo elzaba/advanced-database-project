@@ -1,0 +1,74 @@
+[
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "alertProcessor",
+      "topic": "sample"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "pending",
+    "activeAt": "2024-11-26T03:24:08.866163331Z",
+    "value": "3.7620762526011526e+02"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Warning",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "alertProcessor",
+      "topic": "sample"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second is high and should be monitored.",
+      "summary": "Kafka Broker Bytes In Per Sec is high."
+    },
+    "state": "pending",
+    "activeAt": "2024-11-26T03:25:08.866163331Z",
+    "value": "4.305720438461538e+02"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Critical",
+      "env": "dev",
+      "instance": "kafka-2:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "alertProcessor",
+      "topic": "sample"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second has exceeded a critical threshold.",
+      "summary": "Kafka Broker Bytes In Per Sec is critically high."
+    },
+    "state": "pending",
+    "activeAt": "2024-11-26T03:24:08.866163331Z",
+    "value": "3.7620762526011526e+02"
+  },
+  {
+    "labels": {
+      "alertname": "Kafka_Broker_BytesIn_PerSec_Critical",
+      "env": "dev",
+      "instance": "kafka-1:1234",
+      "job": "kafka",
+      "severity": "critical",
+      "source": "alertProcessor",
+      "topic": "sample"
+    },
+    "annotations": {
+      "description": "Ingestion rate of bytes per second has exceeded a critical threshold.",
+      "summary": "Kafka Broker Bytes In Per Sec is critically high."
+    },
+    "state": "pending",
+    "activeAt": "2024-11-26T03:26:08.866163331Z",
+    "value": "4.305720438461538e+02"
+  }
+]

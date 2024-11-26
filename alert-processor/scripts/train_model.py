@@ -51,7 +51,7 @@ def split_data(data, test_size=0.2, random_state=42):
     for metric_name, df in data.items():
         try:
             # Drop rows with missing values in the required features
-            features = ["value", "rolling_mean", "rolling_std", "z_score", "static_alert"]
+            features = ["value", "ema_mean", "ema_std", "upper_threshold", "lower_threshold", "z_score", "rate_of_change"]
             df = df.dropna(subset=features)
 
             # Split data
@@ -77,18 +77,29 @@ def train_models(data):
     """
     Train multiple models to detect anomalies.
     """
-    features = ["value", "rolling_mean", "rolling_std", "z_score", "static_alert"]
+    features = ["value", "ema_mean", "ema_std", "upper_threshold", "lower_threshold", "z_score", "rate_of_change"]
     models = {}
     for metric_name, datasets in data.items():
         try:
             train_df = datasets["train"]
             X_train = train_df[features]
-            y_train = train_df["final_anomaly"]
+            y_train = train_df["label"]
 
             model_store = {}
 
             # Isolation Forest
             isolation_forest = IsolationForest(random_state=42, contamination=0.05)
+            '''
+            # fine-tuning
+            isolation_forest = IsolationForest(
+                random_state=42,
+                contamination=0.5,
+                n_estimators=200,
+                max_samples="auto"
+                # max_features=1.0,
+                # bootstrap=False
+            )
+            '''
             isolation_forest.fit(X_train)
             model_store["IsolationForest"] = isolation_forest
 

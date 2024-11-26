@@ -81,7 +81,7 @@ def evaluate_model(test_data, model, features, is_one_class=False):
         X_test = test_data[features]
 
         # True labels
-        y_true = test_data["final_anomaly"]
+        y_true = test_data["label"]
 
         # Predict anomalies
         if is_one_class:
@@ -166,7 +166,7 @@ def main():
         logger.info(f"Best model for metric '{metric_name}' is: {best_model} with F1-Score: {best_f1_score:.4f}")
 
         # Update metrics.yml with the best model information
-        update_metrics_config(metric_name, best_model, best_f1_score)
+        # update_metrics_config(metric_name, best_model, best_f1_score)
 
 
 if __name__ == "__main__":

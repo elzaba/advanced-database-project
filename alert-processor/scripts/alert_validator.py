@@ -3,10 +3,21 @@ import json
 import requests
 import pickle
 import pandas as pd
+import numpy as np
 import yaml
-from datetime import datetime
+from datetime import datetime, timedelta
+from urllib.parse import quote_plus
+import joblib
 import logging
 from scipy.stats import zscore
+from pathlib import Path
+import argparse
+
+# Paths and URLs
+METRICS_CONFIG_PATH = Path("../config/metrics.yml")
+MODELS_DIR = Path("../models")
+ALERTMANAGER_URL = "http://localhost:9093/api/v1/alerts"
+DATA_DIR = Path("../data/alerts")
 
 # Initialize logger
 def setup_logger():
@@ -16,238 +27,208 @@ def setup_logger():
 
 logger = setup_logger()
 
-# Load metrics configuration from metrics.yml
-def load_metrics_config(config_path="../config/metrics.yml"):
-    """
-    Load metrics configuration from the specified file.
-    """
+def load_metrics_config():
+    """Load metric configurations from metrics.yml."""
     try:
-        with open(config_path, "r") as file:
-            metrics_config = yaml.safe_load(file)
-        logger.info("Loaded metrics configuration successfully.")
-        return metrics_config
+        with open(METRICS_CONFIG_PATH, "r") as file:
+            config = yaml.safe_load(file)
+            logging.info("Successfully loaded metrics configuration.")
+            return config
     except Exception as e:
-        logger.error(f"Failed to load metrics configuration. Exiting: {e}")
-        return None
+        logging.error(f"Failed to load metrics configuration: {e}")
+        raise
 
-# Fetch alerts from Prometheus
-def fetch_prometheus_alerts(prometheus_url="http://localhost:9090/api/v1/alerts"):
-    """
-    Fetch alerts from Prometheus.
-    """
+def load_model_and_features(model_name, metric_name):
+    """Load the specified model and feature details."""
     try:
-        response = requests.get(prometheus_url)
-        response.raise_for_status()
-        data = response.json()
-        alerts = data.get("data", {}).get("alerts", [])
-        logger.info(f"Fetched {len(alerts)} alerts from Prometheus.")
-        return alerts
-    except Exception as e:
-        logger.error(f"Error fetching alerts from Prometheus: {e}")
-        return []
-
-# Load the model dynamically based on best_model from metrics.yml
-def load_model_and_features(metric_name, model_folder="../models"):
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-    model_folder_path = os.path.join(base_dir, model_folder, metric_name)
-
-    try:
-        # Load metrics configuration to get best model information
-        metrics_config = load_metrics_config()
-        if not metrics_config:
-            raise ValueError("Metrics configuration not found")
-
-        # Get the best model's name from metrics.yml
-        best_model_name = None
-        for metric in metrics_config["metrics"]:
-            if metric["name"] == metric_name:
-                best_model_name = metric["best_model"]["name"]
-                break
-
-        if not best_model_name:
-            raise ValueError(f"No best model found for metric '{metric_name}' in metrics.yml")
-
-        # Construct the path for the best model
-        model_path = os.path.join(model_folder_path, f"{best_model_name}.pkl")
-        features_path = os.path.join(model_folder_path, "features.pkl")
-
-        # Load the model and features
-        with open(model_path, "rb") as model_file:
-            model = pickle.load(model_file)
-        with open(features_path, "rb") as features_file:
-            features = pickle.load(features_file)
-
-        logger.info(f"Loaded best model '{best_model_name}' and features for metric: {metric_name}")
+        model_path = MODELS_DIR / metric_name / f"{model_name}.pkl"
+        features_path = MODELS_DIR / metric_name / "features.pkl"
+        model = joblib.load(model_path)
+        with open(features_path, "rb") as f:
+            features = joblib.load(f)
+        logging.info(f"Model '{model_name}' and features loaded successfully.")
         return model, features
     except Exception as e:
-        logger.error(f"Error loading best model or features for metric '{metric_name}': {e}")
-        return None, None
+        logging.error(f"Error loading model or features: {e}")
+        raise
 
-# Load historical data for the given metric
-def load_historical_data(metric_name, data_folder="../data/historical"):
-    """
-    Load historical data for a given metric from a CSV file.
-    Removes duplicates based on timestamp.
-    """
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-    historical_data_path = os.path.join(base_dir, data_folder, metric_name, "historical_data.csv")
+def fetch_prometheus_alerts(prometheus_url):
+    """Fetch active alerts from Prometheus."""
     try:
-        if os.path.exists(historical_data_path):
-            historical_data = pd.read_csv(historical_data_path, index_col=0, parse_dates=True)
+        response = requests.get(f"{prometheus_url}/api/v1/alerts")
+        response.raise_for_status()
+        logging.info("Fetched active alerts from Prometheus.")
+        return response.json()["data"]["alerts"]
+    except Exception as e:
+        logging.error(f"Failed to fetch alerts: {e}")
+        raise
 
-            # Remove duplicates based on 'timestamp' and keep the first occurrence
-            historical_data = historical_data.loc[~historical_data.index.duplicated(keep='first')]
-
-            logger.info(f"Loaded historical data for {metric_name} from {historical_data_path}")
-            return historical_data
+def fetch_metric_data(prometheus_url, query, time_range, step):
+    """Fetch metric data for feature engineering."""
+    end_time = datetime.utcnow()
+    start_time = end_time - timedelta(minutes=time_range)
+    # URL encode the query
+    # encoded_query = quote_plus(query)
+    params = {
+        "query": query,
+        "start": start_time.isoformat() + 'Z',
+        "end": end_time.isoformat() + 'Z',
+        "step": step,
+    }
+    try:
+        response = requests.get(f"{prometheus_url}/api/v1/query_range", params=params)
+        response.raise_for_status()
+        result = response.json()["data"]["result"]
+        if result:
+            df = pd.DataFrame(result[0]["values"], columns=["timestamp", "value"]).astype({"value": float})
+            logging.info("Successfully fetched metric data.")
+            return df
         else:
-            logger.warning(f"Historical data not found for {metric_name}. Path: {historical_data_path}")
-            return None
+            logging.warning("No data found for the given metric query.")
+            return pd.DataFrame(columns=["timestamp", "value"])
     except Exception as e:
-        logger.error(f"Error loading historical data for {metric_name}: {e}")
-        return None
+        logging.error(f"Failed to fetch metric data: {e}")
+        raise
 
-# Calculate missing features for live alert based on historical data
-def calculate_alert_features(alert, historical_data, window_size=3):
-    """
-    Calculate rolling mean, rolling std, z-score, and static alerts for live alert using historical data.
-    """
-    alert_timestamp = pd.to_datetime(alert["activeAt"][:-1])
+def preprocess_alert(alert, metric_config):
+    """Generate features for an incoming alert."""
+    query = metric_config["query"]
+    time_range = 10
+    step = metric_config["step"]
 
-    # Convert the alert to a DataFrame
-    alert_df = pd.DataFrame([{
-        'timestamp': alert_timestamp,
-        'value': float(alert['value'])
-    }]).set_index('timestamp')
+    prometheus_url = metric_config.get("prometheus_url", "http://localhost:9090")
 
-    # Calculate historical rolling mean and std for reference
-    historical_rolling_mean = historical_data['value'].rolling(window=window_size).mean()
-    historical_rolling_std = historical_data['value'].rolling(window=window_size).std()
+    metric_data = fetch_metric_data(prometheus_url, query, time_range, step)
 
-    # Apply rolling mean and std to alert data using historical reference
-    alert_df['rolling_mean'] = historical_rolling_mean.loc[:alert_timestamp].iloc[-1]
-    alert_df['rolling_std'] = historical_rolling_std.loc[:alert_timestamp].iloc[-1]
+    if metric_data.empty:
+        raise ValueError("No data available for the metric query.")
 
-    # Calculate Z-Score for alert
-    alert_df['z_score'] = (alert_df['value'] - alert_df['rolling_mean']) / alert_df['rolling_std']
+    # Feature Engineering
+    metric_data["timestamp"] = pd.to_datetime(metric_data["timestamp"], unit="s")
+    metric_data.set_index("timestamp", inplace=True)
+    metric_data["z_score"] = zscore(metric_data["value"].fillna(metric_data["value"].mean()))
+    metric_data["rate_of_change"] = metric_data["value"].diff()
+    metric_data["ema_mean"] = metric_data["value"].ewm(span=10, adjust=False).mean()
+    metric_data["ema_std"] = metric_data["value"].ewm(span=10, adjust=False).std()
+    metric_data["upper_threshold"] = metric_data["ema_mean"] + 3 * metric_data["ema_std"]
+    metric_data["lower_threshold"] = metric_data["ema_mean"] - 3 * metric_data["ema_std"]
 
-    # Calculate static alert based on thresholds
-    alert_df['upper_threshold'] = alert_df['rolling_mean'] + 3 * alert_df['rolling_std']
-    alert_df['lower_threshold'] = alert_df['rolling_mean'] - 3 * alert_df['rolling_std']
-    alert_df['static_alert'] = (alert_df['value'] > alert_df['upper_threshold']) | (alert_df['value'] < alert_df['lower_threshold'])
+    # Rolling mean and std for dynamic thresholds
+    rolling_mean = metric_data["value"].rolling(window=10).mean()
+    rolling_std = metric_data["value"].rolling(window=10).std()
 
-    return alert_df.iloc[0].to_dict()
+    # Static thresholds from config
+    critical_threshold = metric_config["thresholds"]["critical"]
+    warning_threshold = metric_config["thresholds"]["warning"]
 
-# Validate an alert using the loaded model
-def validate_alert(alert, model, features, historical_data, metric_name):
+    # Return the latest data as features
+    features = metric_data.iloc[-1][["value", "ema_mean", "ema_std", "upper_threshold", "lower_threshold", "z_score", "rate_of_change"]].values
+    return features.reshape(1, -1), warning_threshold, critical_threshold
+
+def validate_alert(alert, model, metric_config):
+    """Validate an alert using the trained model and statistical thresholds."""
     try:
-        # Calculate required features using historical data
-        alert_features = calculate_alert_features(alert, historical_data)
+        logging.debug(f"Starting validation for alert: {alert['labels']['alertname']}")
+        logging.debug(f"Alert details: {alert}")
 
-        # Extract the relevant features for the model
-        feature_df = pd.DataFrame([alert_features])[features]
+        # Preprocess the alert to extract features and thresholds
+        alert_features, critical_threshold, warning_threshold = preprocess_alert(alert, metric_config)
 
-        # Predict using the model
-        prediction = model.predict(feature_df)
+        logging.debug(f"Extracted alert features: {alert_features}")
+        logging.info(f"Critical threshold: {critical_threshold}, Warning threshold: {warning_threshold}")
 
-        # Return validity based on prediction result
-        return "valid" if prediction[0] == -1 else "invalid"
+        # Convert alert_features to a DataFrame for compatibility
+        feature_names = ["value", "ema_mean", "ema_std", "upper_threshold", "lower_threshold", "z_score", "rate_of_change"]
+        alert_features_df = pd.DataFrame(alert_features, columns=feature_names)
+        
+        logging.debug(f"Formatted alert features for model: {alert_features_df}")
+
+        # Predict alert severity
+        prediction = model.predict(alert_features_df)
+        logging.debug(f"Isolation Forest prediction: {prediction}")
+
+        # Extract the current value
+        current_value = alert_features[0, 0]
+        logging.info(f"Current metric value: {current_value}")
+
+        # Determine severity based on thresholds and model prediction
+        if prediction[0] == -1:  # Anomaly detected by Isolation Forest
+            if current_value > critical_threshold:
+                severity = "critical"
+            elif current_value > warning_threshold:
+                severity = "warning"
+            else:
+                severity = "noise"
+            logging.info(f"Alert '{alert['labels']['alertname']}' classified as {severity} with current value: {current_value}")
+        else:
+            severity = "noise"
+            logging.info(f"Alert '{alert['labels']['alertname']}' classified as noise by Isolation Forest model.")
+
+        return severity
     except Exception as e:
-        logger.error(f"Error validating alert '{alert['labels']['alertname']}': {e}")
-        return "error"
+        logging.error(f"Error validating alert '{alert['labels']['alertname']}': {e}", exc_info=True)
+        return "noise"
 
-# Store alerts based on their validity status
-def store_alerts(valid_alerts, invalid_alerts, unknown_alerts, error_alerts):
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-    alerts_folder = os.path.join(base_dir, "../data/alerts")
-    timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+def save_alerts(alerts, category):
+    """Save alerts to appropriate files if not empty."""
+    if not alerts:
+        logger.info(f"No {category} alerts to save.")
+        return
 
-    # Create directories for storing alerts
-    valid_folder = os.path.join(alerts_folder, "valid", f"valid_alerts_{timestamp_str}.json")
-    invalid_folder = os.path.join(alerts_folder, "invalid", f"invalid_alerts_{timestamp_str}.json")
-    unknown_folder = os.path.join(alerts_folder, "unknown", f"unknown_alerts_{timestamp_str}.json")
-    error_folder = os.path.join(alerts_folder, "error", f"error_alerts_{timestamp_str}.json")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    file_path = DATA_DIR / category / f"{category}_alerts_{timestamp}.json"
+    file_path.parent.mkdir(parents=True, exist_ok=True)
 
-    os.makedirs(os.path.dirname(valid_folder), exist_ok=True)
-    os.makedirs(os.path.dirname(invalid_folder), exist_ok=True)
-    os.makedirs(os.path.dirname(unknown_folder), exist_ok=True)
-    os.makedirs(os.path.dirname(error_folder), exist_ok=True)
+    with open(file_path, "w") as file:
+        json.dump(alerts, file, indent=2)
 
-    # Update source to 'alertProcess'
-    for alert in valid_alerts + invalid_alerts + unknown_alerts + error_alerts:
-        alert["source"] = "alertProcess"
+    logger.info(f"Saved {len(alerts)} {category} alerts to '{file_path}'.")
 
-    # Save alerts to respective JSON files
-    with open(valid_folder, "w") as valid_file:
-        json.dump(valid_alerts, valid_file, indent=2)
-    with open(invalid_folder, "w") as invalid_file:
-        json.dump(invalid_alerts, invalid_file, indent=2)
-    with open(unknown_folder, "w") as unknown_file:
-        json.dump(unknown_alerts, unknown_file, indent=2)
-    with open(error_folder, "w") as error_file:
-        json.dump(error_alerts, error_file, indent=2)
-
-    logger.info(f"Saved {len(valid_alerts)} valid alerts to '{valid_folder}'")
-    logger.info(f"Saved {len(invalid_alerts)} invalid alerts to '{invalid_folder}'")
-    logger.info(f"Saved {len(unknown_alerts)} unknown alerts to '{unknown_folder}'")
-    logger.info(f"Saved {len(error_alerts)} error alerts to '{error_folder}'")
+def forward_alerts(alert, severity):
+    """Forward validated alerts to Notification Channels."""
+    try:
+        alert["labels"]["severity"] = severity
+        alert["labels"]["source"] = "alertProcessor"
+        formatted_alert = [
+            {
+                "labels": alert["labels"],
+                "annotations": alert.get("annotations", {}),
+                "startsAt": alert.get("activeAt", "")
+            }
+        ]
+        logging.info(f"Formatted alert: {json.dumps(formatted_alert, indent=2)}")
+        response = requests.post(ALERTMANAGER_URL, json=formatted_alert, headers={"Content-Type": "application/json"})
+        response.raise_for_status()
+        logging.info(f"Alert '{alert['labels']['alertname']}' forwarded to Notification Channels.")
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Failed to forward alert: {e}")
+        logging.error(f"Response: {response.text}")    
 
 # Main function
 def main():
-    # Load metrics configuration
-    metrics_config = load_metrics_config()
-    if not metrics_config:
-        return
+    """Main function for alert handling and validation."""
+    config = load_metrics_config()
+    valid_alerts, invalid_alerts = [], []
 
-    # Fetch alerts from Prometheus
-    alerts = fetch_prometheus_alerts()
-    if not alerts:
-        logger.error("No alerts fetched. Exiting.")
-        return
+    for metric in config["metrics"]:
+        model_name = metric["best_model"]["name"]
+        metric_name = metric["name"]
 
-    valid_alerts = []
-    invalid_alerts = []
-    unknown_alerts = []
-    error_alerts = []
+        model, _ = load_model_and_features(model_name, metric_name)
 
-    # Validate each alert
-    for alert in alerts:
-        alert_name = alert["labels"].get("alertname")
-        if not alert_name:
-            logger.warning(f"Alert without 'alertname': {alert}")
-            continue
+        alerts = fetch_prometheus_alerts("http://localhost:9090")
+        for alert in alerts:
+            if alert["labels"]["alertname"] in metric["alert_names"]:
+                severity = validate_alert(alert, model, metric)
+                if severity != "noise":  # Forward only warning or critical alerts
+                    valid_alerts.append(alert)
+                    forward_alerts(alert, severity)
+                else:
+                    invalid_alerts.append(alert) 
 
-        # Find the matching metric in metrics.yml
-        metric = next((m for m in metrics_config["metrics"] if alert_name in m["alert_names"]), None)
-        if not metric:
-            logger.warning(f"No matching metric for alert: {alert_name}")
-            alert["validity"] = "unknown"
-            unknown_alerts.append(alert)
-            continue
-
-        # Load the best model and features for this metric
-        model, features = load_model_and_features(metric["name"])
-        if not model or not features:
-            alert["validity"] = "error"
-            error_alerts.append(alert)
-            continue
-
-        # Load historical data for this metric
-        historical_data = load_historical_data(metric["name"])
-        if historical_data is None:
-            alert["validity"] = "error"
-            error_alerts.append(alert)
-            continue
-
-        # Validate the alert
-        alert["validity"] = validate_alert(alert, model, features, historical_data, metric["name"])
-        if alert["validity"] == "valid":
-            valid_alerts.append(alert)
-        elif alert["validity"] == "invalid":
-            invalid_alerts.append(alert)
-
-    # Store alerts based on their validity
-    store_alerts(valid_alerts, invalid_alerts, unknown_alerts, error_alerts)
+    # Save alerts
+    save_alerts(valid_alerts, "valid")
+    save_alerts(invalid_alerts, "invalid")                   
 
 if __name__ == "__main__":
     main()

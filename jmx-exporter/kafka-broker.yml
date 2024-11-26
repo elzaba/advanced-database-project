@@ -9,22 +9,6 @@ rules:
     clientId: "$3"
     topic: "$4"
     partition: "$5"
-
-- pattern: kafka.server<type=SocketServerMetrics, name=ConnectionCount, clientSoftwareName=(.*), clientSoftwareVersion=(.*), listener=(.*), networkProcessor=(.*)><>Count
-  name: kafka_server_socketservermetrics_connectioncount
-  type: GAUGE
-  labels:
-    client_software_name: "$1"
-    client_software_version: "$2"
-    listener: "$3"
-    network_processor: "$4"
-
-- pattern: kafka.server<type=BrokerTopicMetrics, name=MessagesInPerSec, topic=(.*)><>Count
-  name: kafka_server_brokertopicmetrics_messagesinpersec
-  type: GAUGE
-  labels:
-    topic: "$1"
-
 - pattern : kafka.server<type=(.+), name=(.+), clientId=(.+), brokerHost=(.+), brokerPort=(.+)><>Value
   name: kafka_server_$1_$2
   type: GAUGE

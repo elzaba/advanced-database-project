@@ -212,6 +212,9 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle'  
 
   alertmanager:
     image: prom/alertmanager:v0.18.0
@@ -245,6 +248,6 @@ services:
     build: ./alert-processor
     environment:
       - PROMETHEUS_URL=http://prometheus:9090  # Prometheus API endpoint
-      - ALERT_INTERVAL=300  # Check interval in seconds (e.g., 5 minutes)
+      - ALERT_INTERVAL=28800  # 8 hours
     depends_on:
       - prometheus

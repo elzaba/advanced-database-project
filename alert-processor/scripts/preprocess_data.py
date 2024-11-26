@@ -5,7 +5,9 @@ import numpy as np
 import pandas as pd
 import logging
 from datetime import datetime
-from statsmodels.tsa.seasonal import seasonal_decompose
+from imblearn.over_sampling import SMOTE
+from imblearn.under_sampling import RandomUnderSampler
+from sklearn.impute import SimpleImputer
 from scipy.stats import zscore
 
 
@@ -54,6 +56,8 @@ def load_raw_data(data_folder="../data/raw"):
 
             combined_data = []
             for file_name in os.listdir(metric_dir):
+                if file_name.startswith('.'):
+                    continue
                 file_path = os.path.join(metric_dir, file_name)
                 try:
                     with open(file_path, "r") as file:
@@ -91,9 +95,33 @@ def save_historical_data(df, metric_name, data_folder="../data/historical"):
     except Exception as e:
         logger.error(f"Error saving historical data for metric '{metric_name}': {e}")
 
+def resample_data(df):
+    """
+    Handles class imbalance using SMOTE
+    """
+    # Separate features and labels
+    X = df.drop(columns=["label"])
+    y = df["label"]
+
+    # Apply SimpleImputer to handle missing values before resampling
+    imputer = SimpleImputer(strategy="mean")
+    X_imputed = imputer.fit_transform(X)
+
+    # Apply SMOTE for oversampling the minority classes
+    smote = SMOTE(sampling_strategy="auto", random_state=42)  # Oversample minority classes
+    X_res, y_res = smote.fit_resample(X_imputed, y)
+
+    # Optionally, undersample the majority class to balance the data further
+    # undersample = RandomUnderSampler(sampling_strategy="auto", random_state=42)  # Reduce noise class
+    # X_res, y_res = undersample.fit_resample(X_res, y_res)
+
+    # Return the resampled data
+    df_resampled = pd.DataFrame(X_res, columns=X.columns)
+    df_resampled["label"] = y_res
+    return df_resampled
 
 # Preprocess data for each metric
-def preprocess_data(raw_data, thresholds):
+def preprocess_data(raw_data, thresholds, span=10):
     """
     Preprocess raw data by cleaning, engineering features, and identifying anomalies.
     """
@@ -134,32 +162,30 @@ def preprocess_data(raw_data, thresholds):
 
             # Apply Z-score for basic anomaly detection
             df["z_score"] = zscore(df["value"].fillna(df["value"].mean()))
-            df["basic_anomaly"] = (df["z_score"].abs() > 3).astype(int)
+            df["rate_of_change"] = df["value"].diff()
 
             # Feature Engineering
             df["hour"] = df.index.hour
             df["day_of_week"] = df.index.dayofweek
             df["month"] = df.index.month
-            df["rolling_mean"] = df["value"].rolling(window=3).mean()
-            df["rolling_std"] = df["value"].rolling(window=3).std()
+            # Exponential Moving Averages (EMA)
+            df["ema_mean"] = df["value"].ewm(span=span, adjust=False).mean()
+            df["ema_std"] = df["value"].ewm(span=span, adjust=False).std()
 
-            # Dynamic Thresholding
-            df["upper_threshold"] = df["rolling_mean"] + 3 * df["rolling_std"]
-            df["lower_threshold"] = df["rolling_mean"] - 3 * df["rolling_std"]
+            # Dynamic Thresholds based on EMA
+            df["upper_threshold"] = df["ema_mean"] + 3 * df["ema_std"]
+            df["lower_threshold"] = df["ema_mean"] - 3 * df["ema_std"]
 
-            # Static Thresholds
-            df["static_alert"] = (
-                (df["value"] > critical_threshold).astype(int) * 2
-                + (df["value"] > warning_threshold).astype(int)
-            )
+            # Labeling: 1 = Noise, -1 = Anomaly
+            df["label"] = 1  # Default to Noise
+            df.loc[(df["value"] > warning_threshold) & (df["value"] <= critical_threshold), "label"] = -1
+            df.loc[df["value"] > critical_threshold, "label"] = -1
 
-            # Final Anomaly Classification
-            df["final_anomaly"] = (
-                ((df["value"] > df["upper_threshold"]) | (df["value"] < df["lower_threshold"])).astype(int)
-                | df["static_alert"]
-            )
+            # Apply resampling to handle class imbalance
+            df_resampled = resample_data(df)
 
-            processed_data[metric_name] = df
+            # Save processed and resampled data
+            processed_data[metric_name] = df_resampled
             logger.info(f"Processed data for metric {metric_name}")
         except Exception as e:
             logger.error(f"Error processing data for {metric_name}: {e}")

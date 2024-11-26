@@ -93,7 +93,7 @@ def evaluate_statistical_model(df, anomaly_col):
     Evaluate a statistical model using classification metrics.
     """
     try:
-        y_true = df['final_anomaly']
+        y_true = df['label']
         y_pred = df[anomaly_col]
 
         logger.info(f"Evaluation results for {anomaly_col}:")

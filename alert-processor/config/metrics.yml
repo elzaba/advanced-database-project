@@ -3,14 +3,13 @@ metrics:
   - Kafka_Broker_BytesIn_PerSec_Warning
   - Kafka_Broker_BytesIn_PerSec_Critical
   best_model:
-    f1_score: 0.8928571428571429
-    name: RandomForest
+    name: IsolationForest
   description: Rate of bytes ingested by the Kafka broker per second.
   name: kafka_broker_bytes_in_per_sec
-  query: rate(kafka_server_brokertopicmetrics_bytesinpersec[5m])
+  query: rate(kafka_server_brokertopicmetrics_bytesinpersec{topic="sample"}[5m])
   step: 15s
   thresholds:
-    critical: 3000000
-    warning: 1500000
-  time_range: 6h
+    critical: 100
+    warning: 50
+  time_range: 8h
 prometheus_url: http://localhost:9090

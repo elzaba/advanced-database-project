@@ -37,8 +37,8 @@ def fetch_metrics(prometheus_url, metrics_config):
     for metric in metrics_config['metrics']:
         metric_name = metric['name']
         query = metric.get('query', metric_name)
-        time_range = metric.get('time_range', '1h')
-        step = metric.get('step', '1m')
+        time_range = metric.get('time_range', '8h')
+        step = metric.get('step', '15s')
 
         # Parse the time range for hours or minutes
         if time_range.endswith('h'):
@@ -107,7 +107,7 @@ def save_data(fetched_data, data_folder="../data/raw"):
 # Main function to execute fetching and saving of metrics
 def main():
     # Load Prometheus URL and metrics configuration
-    prometheus_url = "http://localhost:9090"  # Replace with your Prometheus URL
+    prometheus_url = "http://localhost:9090"
     metrics_config = load_metrics_config()
 
     if not metrics_config:

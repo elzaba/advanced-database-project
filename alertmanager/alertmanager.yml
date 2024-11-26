@@ -11,19 +11,13 @@ route:
   routes:
     # Route alerts forwarded by alert processor application to Slack.
     - match:
-        severity: 'critical'  # Alerts with 'critical' severity
+        # severity: 'critical' 
         source: 'alertProcessor'  # Source must be 'alertProcessor'
       receiver: slack  # Send to the real channels
-
-    - match:
-        severity: 'warning'  # Alerts with 'critical' severity
-        source: 'alertProcessor'  # Source must be 'alertProcessor'
-      receiver: slack  # Send to the real channels
-
 
     # Route Prometheus alerts to the dummy receiver
     - match:
-        severity: 'critical'  # Alerts with 'critical' severity
+        # severity: 'critical'
         source: 'prometheus'  # Source must be 'prometheus'
       receiver: 'dummy'  # Dummy receiver for Prometheus-originating alerts.
       
