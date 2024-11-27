@@ -93,7 +93,7 @@ def fetch_metric_data(prometheus_url, query, time_range, step):
 def preprocess_alert(alert, metric_config):
     """Generate features for an incoming alert."""
     query = metric_config["query"]
-    time_range = 10
+    time_range = 30
     step = metric_config["step"]
 
     prometheus_url = metric_config.get("prometheus_url", "http://localhost:9090")
@@ -112,14 +112,16 @@ def preprocess_alert(alert, metric_config):
     metric_data["ema_std"] = metric_data["value"].ewm(span=10, adjust=False).std()
     metric_data["upper_threshold"] = metric_data["ema_mean"] + 3 * metric_data["ema_std"]
     metric_data["lower_threshold"] = metric_data["ema_mean"] - 3 * metric_data["ema_std"]
-
+    
     # Rolling mean and std for dynamic thresholds
     rolling_mean = metric_data["value"].rolling(window=10).mean()
     rolling_std = metric_data["value"].rolling(window=10).std()
 
-    # Static thresholds from config
-    critical_threshold = metric_config["thresholds"]["critical"]
-    warning_threshold = metric_config["thresholds"]["warning"]
+    # Thresholds for severity
+    critical_threshold = metric_data["ema_mean"].iloc[-1] + 2.5 * metric_data["ema_std"].iloc[-1]
+    warning_threshold = metric_data["ema_mean"].iloc[-1] + 1.5 * metric_data["ema_std"].iloc[-1]
+
+    logging.debug(f"ema_mean: {metric_data["ema_mean"].iloc[-1]}, ema_std: {metric_data["ema_std"].iloc[-1]}")
 
     # Return the latest data as features
     features = metric_data.iloc[-1][["value", "ema_mean", "ema_std", "upper_threshold", "lower_threshold", "z_score", "rate_of_change"]].values
@@ -135,7 +137,7 @@ def validate_alert(alert, model, metric_config):
         alert_features, critical_threshold, warning_threshold = preprocess_alert(alert, metric_config)
 
         logging.debug(f"Extracted alert features: {alert_features}")
-        logging.info(f"Critical threshold: {critical_threshold}, Warning threshold: {warning_threshold}")
+        logging.debug(f"Critical threshold: {critical_threshold}, Warning threshold: {warning_threshold}")
 
         # Convert alert_features to a DataFrame for compatibility
         feature_names = ["value", "ema_mean", "ema_std", "upper_threshold", "lower_threshold", "z_score", "rate_of_change"]
@@ -155,10 +157,8 @@ def validate_alert(alert, model, metric_config):
         if prediction[0] == -1:  # Anomaly detected by Isolation Forest
             if current_value > critical_threshold:
                 severity = "critical"
-            elif current_value > warning_threshold:
-                severity = "warning"
             else:
-                severity = "noise"
+                severity = "warning"
             logging.info(f"Alert '{alert['labels']['alertname']}' classified as {severity} with current value: {current_value}")
         else:
             severity = "noise"
